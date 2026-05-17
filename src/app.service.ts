@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/await-thenable */
 import { Injectable } from '@nestjs/common';
 import {
   IAppInfo,
@@ -11,36 +12,27 @@ export class AppService {
   constructor(private readonly appStoreService: AppStore) {}
 
   public async saveAllInfo(data: IAppInfo): Promise<boolean> {
-    // eslint-disable-next-line @typescript-eslint/await-thenable
     await this.appStoreService.addAllInfo(data);
     return true;
   }
 
-  public saveLocalisation(data: ISensorLocalisation): Promise<boolean> {
-    console.log('saveLocalisation appService :', data);
-    return new Promise((resolve) => {
-      resolve(true);
-    });
+  public async saveLocalisation(data: ISensorLocalisation): Promise<boolean> {
+    await this.appStoreService.addLocalisationInfo(data);
+    return true;
   }
 
-  public saveTemperature(data: ISensorValue): Promise<boolean> {
-    console.log('saveTemperature appService :', data);
-    return new Promise((resolve) => {
-      resolve(true);
-    });
+  public async saveTemperature(data: ISensorValue): Promise<boolean> {
+    await this.appStoreService.addSensorInfo(data, 'temperature');
+    return true;
   }
 
-  public savePollutionA(data: ISensorValue): Promise<boolean> {
-    console.log('savePollutionA appService :', data);
-    return new Promise((resolve) => {
-      resolve(true);
-    });
+  public async savePollutionA(data: ISensorValue): Promise<boolean> {
+    await this.appStoreService.addSensorInfo(data, 'pollutionA');
+    return true;
   }
 
-  public savePollutionB(data: ISensorValue): Promise<boolean> {
-    console.log('savePollutionB appService :', data);
-    return new Promise((resolve) => {
-      resolve(true);
-    });
+  public async savePollutionB(data: ISensorValue): Promise<boolean> {
+    await this.appStoreService.addSensorInfo(data, 'pollutionB');
+    return true;
   }
 }
