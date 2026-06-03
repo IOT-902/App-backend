@@ -2,6 +2,7 @@ import { Type } from 'class-transformer';
 import {
   IsDateString,
   IsDefined,
+  IsMACAddress,
   IsNumber,
   ValidateNested,
 } from 'class-validator';
@@ -25,7 +26,11 @@ export class SensorValueDto {
   time!: Date;
 }
 
-export class AppInfoDto {
+export class SensorInfoDto {
+  @IsDefined()
+  @IsMACAddress()
+  mac_adress!: string
+
   @IsDefined()
   @ValidateNested()
   @Type(() => SensorLocalisationDto)

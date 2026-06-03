@@ -1,10 +1,3 @@
-export interface IAppInfo {
-  localisation: ISensorLocalisation;
-  temperature: ISensorValue;
-  pollutionA: ISensorValue;
-  pollutionB: ISensorValue;
-}
-
 export interface ISensorLocalisation {
   latitude: number;
   longitude: number;
@@ -16,7 +9,8 @@ export interface ISensorValue {
   time: Date;
 }
 
-export interface IAppHistoryInfo {
+export interface ISensorHistoryInfo {
+  mac_adress: string
   localisations: ISensorLocalisation[];
   temperatures: ISensorValue[];
   pollutionAs: ISensorValue[];

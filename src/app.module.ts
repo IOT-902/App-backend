@@ -1,12 +1,17 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { EventEmitterModule } from '@nestjs/event-emitter';
+import { MongooseModule } from '@nestjs/mongoose';
 import { AppGatewayModule } from './gateways/app.gateway.module';
-import { AppStoreModule } from './store/app-store.module';
+import { AppInfoModule } from './app-info.module';
 
 @Module({
-  imports: [AppGatewayModule, AppStoreModule],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    MongooseModule.forRoot(
+      'mongodb://iot_902:DcJNqtUdVrHohANR63KqnSmcSHkBcR@51.91.101.108:27017/iot_902',
+    ),
+    EventEmitterModule.forRoot(),
+    AppInfoModule,
+    AppGatewayModule,
+  ],
 })
 export class AppModule {}
