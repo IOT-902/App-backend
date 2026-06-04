@@ -43,7 +43,7 @@ export class AppGateway implements OnGatewayConnection, OnGatewayDisconnect {
   ): Promise<void> {
     await socket.join(room);
     console.log(`Client ${socket.id} joined room ${room}`);
-    
+
     if (room === WEBSOCKET_APP_ROOM) {
       const history = await this.appInfoService.findHistory();
       socket.emit(WEBSOCKET_APP_EVENT, history);
@@ -60,7 +60,7 @@ export class AppGateway implements OnGatewayConnection, OnGatewayDisconnect {
     console.log(`Client left room: ${room}`);
   }
 
-   @OnEvent('history.updated')
+  @OnEvent('history.updated')
   async handleHistoryUpdated(): Promise<void> {
     const history = await this.appInfoService.findHistory();
     this.server.to(WEBSOCKET_APP_ROOM).emit(WEBSOCKET_APP_EVENT, history);

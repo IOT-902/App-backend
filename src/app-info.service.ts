@@ -1,15 +1,15 @@
-import { Injectable } from "@nestjs/common";
-import { InjectModel } from "@nestjs/mongoose";
-import { Model } from "mongoose";
-import { SensorInfoDto } from "./models/app-info.dto";
-import { AppHistoryInfo } from "./models/app-info.schema";
-import { EventEmitter2 } from "@nestjs/event-emitter";
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { SensorInfoDto } from './models/app-info.dto';
+import { AppHistoryInfo } from './models/app-info.schema';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 @Injectable()
 export class AppInfoService {
-
   constructor(
-     @InjectModel(AppHistoryInfo.name)
+    @InjectModel(AppHistoryInfo.name)
     private appHistoryInfoModel: Model<AppHistoryInfo>,
     private readonly eventEmitter: EventEmitter2,
   ) {}
