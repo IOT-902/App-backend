@@ -29,7 +29,7 @@ export class SensorValueDto {
 export class SensorInfoDto {
   @IsDefined()
   @IsMACAddress()
-  mac_adress!: string
+  mac_adress!: string;
 
   @IsDefined()
   @ValidateNested()
